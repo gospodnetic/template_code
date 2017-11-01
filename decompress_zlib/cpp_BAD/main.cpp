@@ -14,12 +14,14 @@
 int main()
 {
     // std::string filename = "/home/petra/Desktop/SampleBasedReconstruction/python_utils/zwrite_test.Z";
-    std::string filename = "/home/petra/Desktop/SampleBasedReconstruction/python_utils/zwrite_test_numpy_arange.Z";
+    // std::string filename = "/home/petra/Desktop/template_code/decompress_zlib/zwrite_test_single_scalar.Z";
+    std::string filename= "zwrite_test_numpy_arange.Z";
+    // std::string filename = "hello.z";
 
     std::cout << filename << std::endl;
     std::vector<float> data_in;
     {
-        std::ifstream file_in(filename, std::ios_base::in | std::ios_base::binary);
+        std::ifstream file_in(filename);
         boost::iostreams::filtering_istream in;
         in.push(boost::iostreams::zlib_decompressor());
         in.push(file_in);
@@ -28,9 +30,9 @@ int main()
         ia & data_in;
     }
 
-    for(std::vector<float>::const_iterator i = data_in.begin(); i != data_in.end(); i++)
-        std::cout << *i << std::endl;
+    // for(std::vector<float>::const_iterator i = data_in.begin(); i != data_in.end(); i++)
+    //     std::cout << *i << std::endl;
 
-    std::cout << "Data in size: " << data_in.size() << std::endl;
+    // std::cout << "Data in size: " << data_in.size() << std::endl;
     return 0;
 }
